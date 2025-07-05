@@ -1,0 +1,24 @@
+<form (ngSubmit)="enviar()" #miForm="ngForm">
+    <label>
+        Nombre:
+        <input name="nombre" [(ngModel)]="name" required type="text">
+    </label>
+    <button type ="submit" [disabled]="miForm.invalid" value="Enviar">ENVIAR</button>
+</form>
+
+
+<table *ngIf="names.length > 0" borde="1" style="margin-top: 1rem;">
+    <thead>
+        <h2>Listado</h2>
+        <tr>
+            <th>Numero</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let n of names; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{n}}</td>
+        </tr>
+    </tbody>
+</table>

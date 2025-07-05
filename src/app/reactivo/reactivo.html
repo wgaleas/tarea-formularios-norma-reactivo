@@ -1,0 +1,44 @@
+<p>reactivo works!</p>
+<form [formGroup]="form" (ngSubmit)="enviar()">
+    
+    <label>
+    Nombre:
+    <input type="text" formControlName="nombre" />
+    </label>
+    <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">
+        <small *ngIf="form.get('nombre')?.errors?.['required']">El nombre es obligatorio</small>
+    </div>
+    <br />
+    <label>
+        Correo:
+        <input type="email" formControlName="correo">
+    </label>
+    
+    <div *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched">
+        <small *ngIf="form.get('correo')?.errors?.['required']">Es Obligatorio</small>
+        <small *ngIf="form.get('correo')?.errors?.['email']">Correo inválido</small>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Enviar</button>
+</form>
+<h2>Datos Ingresados</h2>
+    <p>Nombre: {{ form.value.nombre }}</p>
+    <p>Email: {{ form.value.correo }}</p>
+
+<table *ngIf="correos.length > 0" borde="2" style="margin-top: 1rem;">
+    <thead>
+         <h2>Listado</h2>
+        <tr>
+           
+            <th>Numero</th>
+            <th>Nombres</th>
+            <th>Correos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let nombre of nombres; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{ nombre }}</td>
+            <td>{{ correos[i] }}</td>
+        </tr>
+    </tbody>
+</table>
